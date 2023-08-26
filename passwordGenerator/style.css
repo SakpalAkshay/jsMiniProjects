@@ -1,0 +1,76 @@
+*{
+    box-sizing: border-box;
+}
+
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    color: #fff;
+    background-color: #3b3b98;
+    padding: 10px;
+    font-family:cursive;
+    letter-spacing: 1px;
+}
+
+h2{
+    margin: 10px 0 20px;
+    text-align: center;
+}
+
+.container{
+    background-color: #0C356A;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.result-container{
+    width: 60%;
+    display: flex;
+    background-color: aliceblue;
+    justify-content: space-between;
+    color: black;
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+.settings{
+    width: 60%;
+}
+
+input:focus{
+    outline: #3b3b98;
+}
+
+.setting{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px ;
+}
+
+.btn{
+    border-radius: 2px;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.btn-large{
+    width: 25%;
+    padding: 10px;
+    outline: 0;
+    letter-spacing: 0.8px;
+}
+
+.btn:active{
+    transform: scale(0.90);
+}
