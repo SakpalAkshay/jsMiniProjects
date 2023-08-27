@@ -17,27 +17,66 @@ generateEl.addEventListener('click',()=>{
     const lower = lowercaseEl.checked;
     const num = numberEl.checked;
     const symb = symbolEl.checked;
-    console.log(length,upper,lower,num,symb);
+
+    resultEl.innerHTML = generatePassword(upper,lower,symb,num,length);
+
+});
+
+
+clipboardEl.addEventListener('click',()=>{
+
+    const textarea = document.createElement('textarea');
+    const pass = resultEl.innerText;
+    textarea.value = pass;
+    // we can only copy something until it has been added to body
+    document.body.appendChild(textarea);
+    textarea.select(); //select the text present inside
+    document.execCommand('copy');
+    textarea.remove();
+    alert("Password copied to clipboard!");
+
 });
 
 const randomFunc = {
     upper: getRandomUpper,
     lower: getRandomLower,
-    symbol: getRandomSymbol,
-    number: getRandomNumber
+    symb: getRandomSymbol,
+    num: getRandomNumber,
 }
+
+
+function generatePassword(upper,lower,symb,num,length){
+    let generatedPassword = '';
+
+    const typesCount = upper + lower + symb + num;
+    const typesArray = [{upper},{lower},{symb},{num}].filter(item=>Object.values(item)[0]);
+    if(typesCount===0){
+        return ''
+    }
+
+    for(let i =0;i<length;i+=typesCount){
+
+        typesArray.forEach(type =>{
+            const funcName = Object.keys(type)[0];
+            generatedPassword += randomFunc[funcName]();
+        })
+    } 
+    const finalPassword = generatedPassword.slice(0,length);
+    return finalPassword;
+}
+
 
 
 function getRandomUpper(){
-    return String.fromCharCode((Math.floor(Math.random()*26)+ 65) )
+    return String.fromCharCode((Math.floor(Math.random()*26)+ 65) );
 }
 
 function getRandomLower(){
-    return String.fromCharCode((Math.floor(Math.random()*26)+ 97) )
+    return String.fromCharCode((Math.floor(Math.random()*26)+ 97) );
 }
 
 function getRandomNumber(){
-    return String.fromCharCode((Math.floor(Math.random()*26)+ 65) )
+    return String.fromCharCode((Math.floor(Math.random()*10)+ 48) );
 }
 
 function getRandomSymbol(){
